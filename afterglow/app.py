@@ -35,6 +35,7 @@ def safe(fn):
 
 class App:
     def __init__(self):
+        self._last_track = None
         self._cfg = config.load_config()
         self._window = None
         self._ready = False
@@ -68,6 +69,9 @@ class App:
     def _on_media(self, state):
         self._media_state = state
         self._send("onMedia", state)
+        if state.get("track_key") != self._last_track:
+            self._last_track = state.get("track_key")
+            self._wake_poller.set()
 
     def _on_art(self, url):
         self._art = url
