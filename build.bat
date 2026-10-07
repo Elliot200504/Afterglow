@@ -1,13 +1,13 @@
 @echo off
-rem builds dist\SpotLight\SpotLight.exe (run run.bat once first so .venv exists)
+rem builds dist\Afterglow\Afterglow.exe (run run.bat once first so .venv exists)
 cd /d "%~dp0"
 
 .venv\Scripts\pip install pyinstaller
-.venv\Scripts\pyinstaller --noconfirm --windowed --name SpotLight --icon assets\spotlight.ico ^
+.venv\Scripts\pyinstaller --noconfirm --windowed --name Afterglow --icon assets\afterglow.ico ^
     --add-data "ui;ui" --add-data "assets;assets" ^
     --collect-all winrt --collect-all webview --hidden-import pystray._win32 ^
-    spotlight_app.py
+    afterglow_app.py
 
 echo.
-echo Done: dist\SpotLight\SpotLight.exe
+echo Done: dist\Afterglow\Afterglow.exe
 pause

@@ -21,6 +21,6 @@ def start_tray(app):
         item("Log out of Spotify", lambda: app._logout(), enabled=lambda _: app._spotify.linked),
         item("Quit", lambda icon: (icon.stop(), app._window.destroy())),
     )
-    icon = pystray.Icon("SpotLight", Image.open(config.ICON), "SpotLight", menu)
+    icon = pystray.Icon("Afterglow", Image.open(config.ICON), "Afterglow", menu)
     threading.Thread(target=icon.run, daemon=True).start()
     return icon

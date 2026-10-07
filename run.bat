@@ -8,4 +8,4 @@ if not exist .venv (
 )
 
 rem pythonw = no console window
-start "" .venv\Scripts\pythonw.exe -m spotlight
+start "" .venv\Scripts\pythonw.exe -m afterglow

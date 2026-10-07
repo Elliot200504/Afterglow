@@ -3,15 +3,21 @@ import os
 import sys
 from pathlib import Path
 
-APP_DIR = Path(os.environ["APPDATA"]) / "SpotLight"
+APP_DIR = Path(os.environ["APPDATA"]) / "Afterglow"
+
+# the app used to be called SpotLight, move its settings and login over
+OLD_APP_DIR = Path(os.environ["APPDATA"]) / "SpotLight"
+if OLD_APP_DIR.exists() and not APP_DIR.exists():
+    OLD_APP_DIR.rename(APP_DIR)
+
 CONFIG_FILE = APP_DIR / "config.json"
 TOKEN_FILE = APP_DIR / "token.json"
-LOG_FILE = APP_DIR / "spotlight.log"
+LOG_FILE = APP_DIR / "afterglow.log"
 
-# when running as SpotLight.exe the files are unpacked to sys._MEIPASS
+# when running as Afterglow.exe the files are unpacked to sys._MEIPASS
 BASE_DIR = Path(getattr(sys, "_MEIPASS", Path(__file__).parent.parent))
 UI_DIR = BASE_DIR / "ui"
-ICON = BASE_DIR / "assets" / "spotlight.ico"
+ICON = BASE_DIR / "assets" / "afterglow.ico"
 
 COMPACT = (420, 140)
 

@@ -1,6 +1,6 @@
-// SpotLight UI
-// Python sends us updates by calling spotlight.onMedia(...), spotlight.onApi(...) etc (see the bottom part).
-// We call Python with call('method_name', args), which runs the method with that name in spotlight/app.py.
+// Afterglow UI
+// Python sends us updates by calling afterglow.onMedia(...), afterglow.onApi(...) etc (see the bottom part).
+// We call Python with call('method_name', args), which runs the method with that name in afterglow/app.py.
 
 const $ = (id) => document.getElementById(id);
 const card = $('card');
@@ -528,7 +528,7 @@ function applyConfig(cfg) {
   document.documentElement.classList.toggle('scanlines', cfg.scanlines);
 }
 
-window.spotlight = {
+window.afterglow = {
   onMedia(state) {
     media = state;
     if (!state.present) coverFromWindows = null;

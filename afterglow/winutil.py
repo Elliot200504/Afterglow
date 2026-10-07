@@ -6,12 +6,12 @@ kernel32 = ctypes.windll.kernel32
 kernel32.CreateEventW.restype = ctypes.c_void_p
 kernel32.OpenEventW.restype = ctypes.c_void_p
 
-SHOW_EVENT = "SpotLightShowWidget"
+SHOW_EVENT = "AfterglowShowWidget"
 
 
 def set_app_id():
     # without this windows thinks the widget is just "python" and shows python's icon in the taskbar
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("SpotLight.Widget")
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("Afterglow.Widget")
 
 
 def round_corners(hwnd):
@@ -25,7 +25,7 @@ _mutex = None
 
 def already_running():
     global _mutex
-    _mutex = kernel32.CreateMutexW(None, False, "SpotLightMutex")
+    _mutex = kernel32.CreateMutexW(None, False, "AfterglowMutex")
     return kernel32.GetLastError() == 183  # ERROR_ALREADY_EXISTS
 
 
@@ -36,7 +36,7 @@ def tell_running_app_to_show():
 
 
 def wait_for_show(callback):
-    # runs in a thread: every time SpotLight is started again (e.g. the pinned icon), show the widget
+    # runs in a thread: every time Afterglow is started again (e.g. the pinned icon), show the widget
     event = kernel32.CreateEventW(None, False, False, SHOW_EVENT)
     while kernel32.WaitForSingleObject(ctypes.c_void_p(event), 0xFFFFFFFF) == 0:
         callback()

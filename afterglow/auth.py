@@ -29,7 +29,7 @@ def login(client_id):
             self.send_response(200)
             self.send_header("Content-Type", "text/html")
             self.end_headers()
-            self.wfile.write(b"<h1 style='font-family:sans-serif'>SpotLight is linked, you can close this tab.</h1>")
+            self.wfile.write(b"<h1 style='font-family:sans-serif'>Afterglow is linked, you can close this tab.</h1>")
 
         def log_message(self, *args):
             pass

@@ -59,7 +59,7 @@ class App:
 
     def _send(self, fn, data):
         if self._ready:
-            self._window.run_js(f"spotlight.{fn}({json.dumps(data)})")
+            self._window.run_js(f"afterglow.{fn}({json.dumps(data)})")
 
     def _save(self, **values):
         self._cfg.update(values)

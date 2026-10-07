@@ -1,4 +1,4 @@
-# SpotLight
+# Afterglow
 
 A floating retro-neon desktop widget for Windows 11 that shows what the **Spotify desktop app**
 is playing and controls it: play/pause, skip, seek, volume, shuffle, repeat and like. You can
@@ -17,14 +17,14 @@ also search and pick tracks, albums and playlists, which then play in the Spotif
 ## One-time setup
 
 1. Go to <https://developer.spotify.com/dashboard> and log in with your normal Spotify account.
-2. **Create app**: name it "SpotLight" and tick **Web API**.
+2. **Create app**: name it "Afterglow" and tick **Web API**.
 3. Add the redirect URI **`http://127.0.0.1:8888/callback`**. It must be the loopback IP;
    Spotify no longer accepts `localhost` redirect URIs.
 4. Copy the app's **Client ID** (no secret is needed).
-5. Start SpotLight (below). On first launch the widget opens the **LINK SPOTIFY** screen:
+5. Start Afterglow (below). On first launch the widget opens the **LINK SPOTIFY** screen:
    paste the Client ID, click **CONNECT** and approve the login in your browser.
 
-The login is remembered (refresh token in `%APPDATA%\SpotLight\token.json`) and the access token
+The login is remembered (refresh token in `%APPDATA%\Afterglow\token.json`) and the access token
 refreshes silently.
 
 ## Running it
@@ -34,13 +34,13 @@ refreshes silently.
 Double-click **`run.bat`**. On the first run it creates `.venv` and installs the dependencies.
 It starts the widget without a console window.
 
-For development (with a console and log output): `.venv\Scripts\python -m spotlight`.
+For development (with a console and log output): `.venv\Scripts\python -m afterglow`.
 
 ## Settings
 
-**ALL APP RELATED STUFF IS IN APPDATA/SPOTLIGHT**
+**ALL APP RELATED STUFF IS IN APPDATA/AFTERGLOW**
 
-Settings are in config.json (edit it while SpotLight is closed):
+Settings are in config.json (edit it while Afterglow is closed):
 
 client_id: Your Spotify app's client ID
 
@@ -56,7 +56,7 @@ x, y, expanded_w, expanded_h: Remembered position and size on the monitor
 
 Want your own colors? All colors live as CSS variables at the top of ui/style.css
 
-Logs: spotlight.log, in the same folder
+Logs: afterglow.log, in the same folder
 
 ## Spotify API notes (2026)
 
@@ -75,14 +75,14 @@ Logs: spotlight.log, in the same folder
 | RATE LIMITED | Spotify asked us to slow down; try again. |
 | LOGIN EXPIRED | The refresh token was revoked; link again from the expanded view. |
 
-- Reset everything: quit SpotLight and delete `%APPDATA%\SpotLight`.
+- Reset everything: quit Afterglow and delete `%APPDATA%\Afterglow`.
 
 ## About
 
-SpotLight is a fan project and is not made by, endorsed by or affiliated with Spotify.
-Spotify is a trademark of Spotify AB. SpotLight only uses Spotify's public Web API and
+Afterglow is a fan project and is not made by, endorsed by or affiliated with Spotify.
+Spotify is a trademark of Spotify AB. Afterglow only uses Spotify's public Web API and
 the controls Windows already gives every media app.
 
-SpotLight was written with Claude Code, Anthropic's AI coding assistant.
+Afterglow was written with Claude Code, Anthropic's AI coding assistant.
 
 Fonts: Orbitron and Share Tech Mono (SIL Open Font License, see `ui/fonts/`).

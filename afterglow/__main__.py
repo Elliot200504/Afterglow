@@ -1,11 +1,20 @@
-# Start with: python -m spotlight
+# Start with: python -m afterglow
 import sys
+
+from . import config
+
+# no console (pythonw / exe): print() goes to the log file instead.
+# this has to happen before "import webview", because pywebview sends output to nowhere if there's no console
+if sys.stdout is None:
+    config.APP_DIR.mkdir(parents=True, exist_ok=True)
+    sys.stdout = sys.stderr = open(config.LOG_FILE, "a", encoding="utf-8", buffering=1)
+
 import threading
 
 import keyboard
 import webview
 
-from . import config, winutil
+from . import winutil
 from .app import App
 from .tray import start_tray
 
@@ -14,10 +23,6 @@ def main():
     if winutil.already_running():
         winutil.tell_running_app_to_show()  # e.g. clicked the pinned icon again
         return
-
-    if sys.stdout is None:  # no console (pythonw / exe): print() goes to the log file instead
-        config.APP_DIR.mkdir(parents=True, exist_ok=True)
-        sys.stdout = sys.stderr = open(config.LOG_FILE, "a", encoding="utf-8", buffering=1)
 
     winutil.set_app_id()
     app = App()
@@ -32,7 +37,7 @@ def main():
         x, y = screen.width - width - 16, screen.height - height - 64
 
     window = webview.create_window(
-        "SpotLight", str(config.UI_DIR / "index.html"), js_api=app,
+        "Afterglow", str(config.UI_DIR / "index.html"), js_api=app,
         width=width, height=height, x=x, y=y,
         frameless=True, easy_drag=False, resizable=False, shadow=False,
         on_top=cfg["always_on_top"], background_color="#07051a",
