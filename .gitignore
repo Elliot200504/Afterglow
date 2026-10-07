@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+token.json
+config.json
+build/
+dist/
+*.spec
+# shortcut has paths from this PC in it
+SpotLight.lnk

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="utf-8">
+  <title>SpotLight</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-prev" viewBox="0 0 24 24"><path fill="currentColor" d="M6 5h2.4v14H6zM20 5v14L9.2 12z"/></symbol>
+      <symbol id="i-next" viewBox="0 0 24 24"><path fill="currentColor" d="M15.6 5H18v14h-2.4zM4 5v14l10.8-7z"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4v16l13-8z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h4v16H6zM14 4h4v16h-4z"/></symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 7h3c5 0 7 10 12 10h3M3 17h3c2 0 3.2-1.6 4.3-3.6M13.7 9.6C14.8 7.6 16 7 18 7h3M18 4l3 3-3 3M18 14l3 3-3 3"/></symbol>
+      <symbol id="i-repeat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 11V9a3 3 0 0 1 3-3h12M16 3l3 3-3 3M20 13v2a3 3 0 0 1-3 3H5M8 21l-3-3 3-3"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 20s-7-4.4-9-8.6C1.6 8.4 3.6 5 7 5c2 0 3.3 1.2 5 3 1.7-1.8 3-3 5-3 3.4 0 5.4 3.4 4 6.4C19 15.6 12 20 12 20z"/></symbol>
+      <symbol id="i-volume" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9h4l5-4v14l-5-4H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24"><path fill="currentColor" d="M9 17.5a3 3 0 1 1-2-2.8V5l12-2v11.5a3 3 0 1 1-2-2.8V6.4l-8 1.4z"/></symbol>
+    </defs>
+  </svg>
+
+  <div id="app">
+    <section id="card" class="card pywebview-drag-region paused">
+      <div class="art-wrap">
+        <img id="art-a" class="art" alt="">
+        <img id="art-b" class="art" alt="">
+        <svg class="art-empty"><use href="#i-note"/></svg>
+      </div>
+
+      <div class="info">
+        <div class="title-row">
+          <div class="marquee" id="title-box"><span id="title">SPOTLIGHT</span></div>
+          <span id="paused-badge">PAUSED</span>
+        </div>
+        <div class="artist ellipsis" id="artist">waiting for signal…</div>
+        <div class="album ellipsis" id="album">&nbsp;</div>
+
+        <div class="progress-row">
+          <span class="time" id="t-elapsed">0:00</span>
+          <div class="bar no-drag" id="bar">
+            <div class="bar-track"></div>
+            <div class="bar-fill" id="bar-fill"></div>
+            <div class="playhead" id="playhead"></div>
+          </div>
+          <span class="time" id="t-total">0:00</span>
+        </div>
+
+        <div class="controls">
+          <button class="btn api" id="btn-shuffle" title="Shuffle"><svg><use href="#i-shuffle"/></svg></button>
+          <button class="btn" id="btn-prev" title="Previous"><svg><use href="#i-prev"/></svg></button>
+          <button class="btn play" id="btn-play" title="Play / pause"><svg><use id="play-icon" href="#i-play"/></svg></button>
+          <button class="btn" id="btn-next" title="Next"><svg><use href="#i-next"/></svg></button>
+          <button class="btn api" id="btn-repeat" title="Repeat: off"><svg><use href="#i-repeat"/></svg><span class="badge-one">1</span></button>
+          <span class="spacer"></span>
+          <button class="btn api" id="btn-like" title="Save to Liked Songs"><svg><use href="#i-heart"/></svg></button>
+          <div class="vol-wrap api">
+            <button class="btn" id="btn-vol" title="Volume"><svg><use href="#i-volume"/></svg></button>
+            <div class="vol-pop">
+              <input type="range" id="vol" min="0" max="100" value="50">
+              <span id="vol-val">50</span>
+            </div>
+          </div>
+          <button class="btn" id="btn-expand" title="Expand"><svg><use href="#i-chevron"/></svg></button>
+        </div>
+      </div>
+
+      <div class="nosignal" id="nosignal">
+        <div class="noise"></div>
+        <div class="nosignal-text">NO SIGNAL</div>
+        <button class="neon-btn" id="btn-launch">LAUNCH SPOTIFY</button>
+      </div>
+
+      <div class="toast" id="toast"></div>
+    </section>
+
+    <section id="panel" class="panel">
+      <nav class="tabs">
+        <button class="tab active" data-tab="search">SEARCH</button>
+        <button class="tab" data-tab="playlists">PLAYLISTS</button>
+        <button class="tab" data-tab="queue">QUEUE</button>
+      </nav>
+
+      <div class="tab-body" id="tab-search">
+        <input id="search-input" class="neon-input" type="text" placeholder="SEARCH TRACKS, ALBUMS, PLAYLISTS…" spellcheck="false" autocomplete="off">
+        <div class="list" id="search-results"><div class="hint">type to search · right-click a track to queue it</div></div>
+      </div>
+
+      <div class="tab-body" id="tab-playlists" hidden>
+        <div class="list" id="playlist-list"></div>
+      </div>
+
+      <div class="tab-body" id="tab-queue" hidden>
+        <div class="list" id="queue-list"></div>
+      </div>
+
+      <div class="tab-body setup" id="tab-setup" hidden>
+        <h2>LINK SPOTIFY</h2>
+        <ol>
+          <li>Open <span class="mono">developer.spotify.com/dashboard</span> and create an app (Web API).</li>
+          <li>Add redirect URI <span class="mono sel">http://127.0.0.1:8888/callback</span></li>
+          <li>Paste the app's <b>Client ID</b> below and connect.</li>
+        </ol>
+        <input id="client-id" class="neon-input" type="text" placeholder="CLIENT ID" spellcheck="false" autocomplete="off">
+        <button class="neon-btn" id="btn-connect">CONNECT</button>
+        <div class="setup-status" id="setup-status">Play/pause/skip already work without linking.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="grip" title="Drag to resize"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
