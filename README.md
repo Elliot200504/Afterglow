@@ -8,6 +8,12 @@ also search and pick tracks, albums and playlists, which then play in the Spotif
 - Play/pause/next/previous work even without logging in.
 - Everything else uses the Spotify Web API (login with PKCE, no client secret).
 
+## CHECK IT OUT
+
+<img width="411" height="130" alt="bild" src="https://github.com/user-attachments/assets/8db8fcd0-3e5b-4eef-a1a2-0921165550e3" />
+
+**CRIMSON THEME**
+
 ## Requirements
 
 - Windows 11 (Windows 10 with the WebView2 runtime should also work)
