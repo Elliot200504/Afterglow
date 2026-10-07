@@ -10,6 +10,10 @@ also search and pick tracks, albums and playlists, which then play in the Spotif
 
 ## CHECK IT OUT
 
+<img width="406" height="128" alt="bild" src="https://github.com/user-attachments/assets/385139bf-cd46-4d1e-82da-a209bb02cf14" />
+
+**DEFAULT THEME**
+
 <img width="411" height="130" alt="bild" src="https://github.com/user-attachments/assets/8db8fcd0-3e5b-4eef-a1a2-0921165550e3" />
 
 **CRIMSON THEME**
