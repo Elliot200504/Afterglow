@@ -10,8 +10,7 @@ if sys.stdout is None:
     sys.stdout = sys.stderr = open(config.LOG_FILE, "a", encoding="utf-8", buffering=1)
 
 import threading
-
-import keyboard
+# import keyboard # requires admin privileges on Windows, so only import it when needed
 import webview
 
 from . import winutil
@@ -51,7 +50,7 @@ def main():
     window.events.moved += app._on_moved
 
     tray = start_tray(app)
-    keyboard.add_hotkey(cfg["hotkey"], app._toggle_visible)
+    # keyboard.add_hotkey(cfg["hotkey"], app._toggle_visible)
     threading.Thread(target=winutil.wait_for_show, args=(app._show,), daemon=True).start()
     app._start(window)
 
