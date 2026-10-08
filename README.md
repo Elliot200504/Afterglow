@@ -26,6 +26,8 @@ also search and pick tracks, albums and playlists, which then play in the Spotif
 
 ## One-time setup
 
+### Linking Spotify
+
 1. Go to <https://developer.spotify.com/dashboard> and log in with your normal Spotify account.
 2. **Create app**: name it "Afterglow" and tick **Web API**.
 3. Add the redirect URI **`http://127.0.0.1:8888/callback`**. It must be the loopback IP;
@@ -36,6 +38,18 @@ also search and pick tracks, albums and playlists, which then play in the Spotif
 
 The login is remembered (refresh token in `%APPDATA%\Afterglow\token.json`) and the access token
 refreshes silently.
+
+### Build an .exe (optional, lets you pin Afterglow to the taskbar)
+
+Windows won't let you pin `run.bat` to the taskbar, so to get a proper pinned icon you need
+to build an .exe:
+
+1. Double-click **`run.bat`** once so `.venv` exists.
+2. Double-click **`build.bat`**. It installs PyInstaller into `.venv` and produces
+   `dist\Afterglow\Afterglow.exe`.
+3. Right-click `Afterglow.exe` → **Pin to taskbar**. The app sets its own AppUserModelID
+   and uses a single-instance mutex, so clicking the pinned icon again just reveals the
+   running widget instead of launching a second copy.
 
 ## Running it
 
